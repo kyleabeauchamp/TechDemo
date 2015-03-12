@@ -12,6 +12,25 @@ sns.set(style="white")
 dataset = example_datasets.alanine_dipeptide.fetch_alanine_dipeptide()  # From Figshare!
 trajectories = [t[::50] for t in dataset["trajectories"]]  # List of MDTraj Trajectory Objects
 
+# Our datasets are large numbers of high dimensional time series
+trajectories
+trajectories[0].xyz.shape
+
+
+# Extract some features: dihedral angles and state labels
+figure()
+dih_featurizer = featurizer.DihedralFeaturizer(["phi", "psi"], sincos=False)
+X = dih_featurizer.transform(trajectories)
+phi, psi = np.rad2deg(np.concatenate(X).T)
+
+plot(np.rad2deg(X[0][:, 1]))
+ylim(-180, 180)
+xlabel("Time")
+ylabel("Psi")
+title("Single Trajectory: Psi Feature")
+
+
+
 # Instantiate the objects in our data analysis pipeline
 clusterer = cluster.MiniBatchKMedoids(n_clusters=50, metric="rmsd")
 msm_model = msm.MarkovStateModel()
@@ -20,8 +39,10 @@ lumper = lumping.PCCA(n_macrostates=2)
 # Build the pipeline from the individual steps and fit the model with our data
 pipeline = make_pipeline(clusterer, msm_model, lumper)
 labels = pipeline.fit_transform(trajectories)
+flat_labels = np.concatenate(labels)
 
 # Plot a single time series trajectory of state labels
+figure()
 plot(labels[0], 'o')
 ylim(-0.25, 1.25)
 yticks([0.0, 1.0], ["A", "B"])
@@ -30,11 +51,7 @@ ylabel("State")
 title("Single Trajectory of State Labels")
 
 
-# Extract some features: dihedral angles and state labels
-dih_featurizer = featurizer.DihedralFeaturizer(["phi", "psi"], sincos=False)
-X = dih_featurizer.transform(trajectories)
-phi, psi = np.rad2deg(np.concatenate(X).T)
-flat_labels = np.concatenate(labels)
+
 
 
 # Move data into pandas for exploring with seaborn
@@ -46,7 +63,3 @@ g.map_lower(plt.scatter)
 g.map_diag(plt.hist, lw=3)
 g.add_legend()
 g.set(xlim=(-180, 180), ylim=(-180, 180))
-
-# Our datasets are large numbers of high dimensional time series
-trajectories
-trajectories[0].xyz.shape
