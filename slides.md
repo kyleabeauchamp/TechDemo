@@ -3,10 +3,11 @@
 
 ---
 title: Molecular dynamics as Data Science
-subtitle:  Predict physical properties, learn interesting biology
+subtitle:  Learning interesting biology from molecular timeseries
 
 <center>
 <video id="sampleMovie" src="movies/shaw-dasatanib-2.mov" loop=\"true\ autoPlay=\"true\  width="512" height="384"></video>
+<img height=300 src=figures/multiscale-cartoon.png />
 </center>
 
 <footer class="source">

@@ -21,6 +21,13 @@ lumper = lumping.PCCA(n_macrostates=2)
 pipeline = make_pipeline(clusterer, msm_model, lumper)
 labels = pipeline.fit_transform(trajectories)
 
+# Plot a single time series trajectory of state labels
+plot(labels[0], 'o')
+ylim(-0.25, 1.25)
+yticks([0.0, 1.0], ["A", "B"])
+xlabel("Time")
+ylabel("State")
+title("Single Trajectory of State Labels")
 
 
 # Extract some features: dihedral angles and state labels
@@ -37,4 +44,5 @@ data.state = data.state.apply(lambda x: {0:"A", 1:"B"}[x])
 g = sns.PairGrid(data, diag_sharey=False, hue="state")
 g.map_lower(plt.scatter)
 g.map_diag(plt.hist, lw=3)
-g.set(xlim=(-180, 180), ylim=(-180, 180));
+g.add_legend()
+g.set(xlim=(-180, 180), ylim=(-180, 180))
