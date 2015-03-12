@@ -7,7 +7,7 @@ subtitle:  Learning interesting biology from molecular timeseries
 
 <center>
 <video id="sampleMovie" src="movies/shaw-dasatanib-2.mov" loop=\"true\ autoPlay=\"true\  width="512" height="384"></video>
-<img height=300 src=figures/multiscale-cartoon.png />
+<img height=300 src=figures/two_state.png />
 </center>
 
 <footer class="source">
