@@ -46,3 +46,7 @@ g.map_lower(plt.scatter)
 g.map_diag(plt.hist, lw=3)
 g.add_legend()
 g.set(xlim=(-180, 180), ylim=(-180, 180))
+
+# Our datasets are large numbers of high dimensional time series
+trajectories
+trajectories[0].xyz.shape
