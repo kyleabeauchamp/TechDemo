@@ -2,7 +2,7 @@
 % author: Kyle A. Beauchamp
 
 ---
-title: Molecular dynamics
+title: Molecular dynamics as Data Science
 subtitle:  Predict physical properties, learn interesting biology
 
 <center>
@@ -12,15 +12,6 @@ subtitle:  Predict physical properties, learn interesting biology
 <footer class="source">
 Movie Credit: DE Shaw Research
 </footer>
-
----
-title: Old-School Molecular Dynamics Analysis
-
-- Exclusively command line interfaces, C and Fortran code
-- Duplication of statistical algorithms by non-experts (e.g. chemists)
-- Possible code maintainability issues?
-
-Enter Data Science!
 
 ---
 title: MSMBuilder: Design
